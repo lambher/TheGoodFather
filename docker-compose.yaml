@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  tgf-server:
+    build: .
+    ports:
+      - "3001:3001"
+    depends_on:
+      - elasticsearch
+    networks: 
+      - tgf-network
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
+    container_name: elasticsearch
+    logging:
+        driver: none
+    networks: 
+        - tgf-network
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+
+volumes:
+  tgf-elasticsearch-data:
+    driver: local
+networks: 
+  tgf-network:
