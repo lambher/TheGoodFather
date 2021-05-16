@@ -1,0 +1,19 @@
+{
+    "name": "The Good Father",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "add a Tgf Button inside youtube video pages",
+    "content_scripts": [
+        {
+            "js": [
+                "init.js"
+            ],
+            "css": [
+                "styles.css"
+            ],
+            "matches": [
+                "https://www.youtube.com/*"
+            ]
+        }
+    ]
+}
