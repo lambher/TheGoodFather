@@ -2,6 +2,7 @@ window.onload = () => {
     function onClick() {
         const url = window.location.href;
 
+        console.log(document.cookie);
         alert(`video url : ${url}`);
     }
 
